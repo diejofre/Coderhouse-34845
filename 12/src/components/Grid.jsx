@@ -2,7 +2,13 @@ import { Center, SimpleGrid, Spinner } from "@chakra-ui/react";
 import React from "react";
 import ProductCard from "./ProductCard";
 
-const Grid = ({ products, loading, getProduct }) => {
+const Grid = ({
+  products,
+  loading,
+  getProduct,
+  updateProduct,
+  deleteProduct,
+}) => {
   return (
     <Center>
       <SimpleGrid columns={2}>
@@ -27,6 +33,8 @@ const Grid = ({ products, loading, getProduct }) => {
                 description={product.description}
                 category={product.category}
                 getProduct={getProduct}
+                updateProduct={updateProduct}
+                deleteProduct={deleteProduct}
               />
             );
           })}

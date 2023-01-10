@@ -12,6 +12,7 @@ import {
   Tabs,
 } from "@chakra-ui/react";
 import { FaHome, FaShoppingCart } from "react-icons/fa";
+import { AiFillPlusSquare } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { capitalize } from "../../utils/functions";
 
@@ -33,41 +34,11 @@ const NavBar = ({ products, favorites, getFavorite, deleteFavorite }) => {
         </TabList>
       </Tabs>
       <Flex>
-        <Menu>
-          <MenuButton
-            color="white"
-            as={Button}
-            size="sm"
-            bg="transparent"
-            mr={2}
-            mt={1.5}
-            _hover={{ bg: "teal.700" }}
-          >
-            Your favorites
-          </MenuButton>
-          <MenuList>
-            {favorites &&
-              favorites.map((favorite) => {
-                return (
-                  <Link key={favorite.id} to={`favorite/${favorite.id}`}>
-                    <MenuItem
-                      minH="48px"
-                      onClick={() => getFavorite(favorite.id)}
-                    >
-                      <Image
-                        boxSize="2rem"
-                        borderRadius="full"
-                        src={favorite.image}
-                        alt={favorite.title}
-                        mr="12px"
-                      />
-                      <span>{favorite.title}</span>
-                    </MenuItem>
-                  </Link>
-                );
-              })}
-          </MenuList>
-        </Menu>
+        <Link to="create">
+          <Box bg="black" py={3} px={5}>
+            <AiFillPlusSquare color="teal" />
+          </Box>
+        </Link>
         <Box bg="teal" py={3} px={5}>
           <FaShoppingCart color="white" />
         </Box>

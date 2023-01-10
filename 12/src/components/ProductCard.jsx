@@ -21,6 +21,8 @@ const ProductCard = ({
   category,
   id,
   getProduct,
+  updateProduct,
+  deleteProduct,
 }) => {
   const path = useLocation().pathname;
 
@@ -54,9 +56,23 @@ const ProductCard = ({
               colorScheme="green"
               onClick={() => getProduct(id)}
             >
-              Ver producto
+              Ver
             </Button>
           </Link>
+          <Button
+            variant="ghost"
+            colorScheme="red"
+            onClick={() => deleteProduct(id)}
+          >
+            Eliminar
+          </Button>
+          <Button
+            variant="solid"
+            colorScheme="yellow"
+            onClick={() => updateProduct(id)}
+          >
+            Update
+          </Button>
         </ButtonGroup>
       </CardFooter>
     </Card>
