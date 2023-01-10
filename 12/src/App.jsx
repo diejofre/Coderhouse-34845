@@ -12,11 +12,22 @@ function App() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const productsCollectionRef = collection(db, "products");
+  const [product, setProduct] = useState({});
 
   const getProducts = async () => {
     const data = await getDocs(productsCollectionRef);
     setProducts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     setLoading(false);
+  };
+
+  const getProduct = async (id) => {
+    const docRef = doc(db, "products", id);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      setProduct(docSnap.data());
+    } else {
+      console.log("No such document!");
+    }
   };
 
   const update = async (id) => {
@@ -35,9 +46,15 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Grid loading={loading} products={products} />}
+            element={
+              <Grid
+                loading={loading}
+                products={products}
+                getProduct={getProduct}
+              />
+            }
           />
-          <Route path="/products/:id" element={<Product />} />
+          <Route path="/products/:id" element={<Product product={product} />} />
         </Routes>
       </Container>
     </>

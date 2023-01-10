@@ -48,30 +48,15 @@ const ProductCard = ({
       <Divider />
       <CardFooter>
         <ButtonGroup spacing="2">
-          <Button
-            variant="solid"
-            colorScheme="green"
-            onClick={() => getProduct(id)}
-          >
-            Ver producto
-          </Button>
-          {path === "/" ? (
+          <Link to={`/products/${id}`}>
             <Button
-              variant="ghost"
+              variant="solid"
               colorScheme="green"
-              onClick={() => addFavorite(id)}
+              onClick={() => getProduct(id)}
             >
-              Add to favorites
+              Ver producto
             </Button>
-          ) : (
-            <Button
-              variant="ghost"
-              colorScheme="green"
-              onClick={() => deleteFavorite(id)}
-            >
-              Remove from favorites
-            </Button>
-          )}
+          </Link>
         </ButtonGroup>
       </CardFooter>
     </Card>
